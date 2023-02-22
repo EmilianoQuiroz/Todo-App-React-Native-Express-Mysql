@@ -29,27 +29,27 @@ import {
     credentials: true, // allow sending credentials (cookies, authentication)
   };
   
-  const developers = [
-    { id: 1, name: "John Doe", apiKey: "abcdef123456" },
-    { id: 2, name: "Jane Doe", apiKey: "ghijkl789012" },
-  ];
+//   const developers = [
+//     { id: 1, name: "John Doe", apiKey: "abcdef123456" },
+//     { id: 2, name: "Jane Doe", apiKey: "ghijkl789012" },
+//   ];
   
-  const ckeckApiKey = (req, res, next) => {
-    const apiKey = req.headers["x-api-key"];
-    const developer = developers.find((d) => d.apiKey === apiKey); //check if we have a dev with that key
-    if (!developer) {
-      return res.status(401).json({ message: "Unauthorized, invalid Api Key" });
-    }
-    req.developer = developer;
-    next();
-  };
+//   const ckeckApiKey = (req, res, next) => {
+//     const apiKey = req.headers["x-api-key"];
+//     const developer = developers.find((d) => d.apiKey === apiKey); //check if we have a dev with that key
+//     if (!developer) {
+//       return res.status(401).json({ message: "Unauthorized, invalid Api Key" });
+//     }
+//     req.developer = developer;
+//     next();
+//   };
   
   const app = express();
-  app.use(bodyParser.json());
+  //app.use(bodyParser.json());
   app.use(express.json());
-  // app.use(cors());
+  //app.use(cors());
   app.use(cors(corsOptions));
-  app.use(ckeckApiKey);
+  //app.use(ckeckApiKey);
   
   app.get("/todos/:id", async (req, res) => {
     const todos = await getTodosByID(req.params.id);
